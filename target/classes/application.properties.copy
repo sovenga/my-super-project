@@ -1,0 +1,28 @@
+
+server.port=1445
+#spring.cloud.stream.servicebus.bindings.input.consumer.checkpoint-mode=MANUAL
+spring.cloud.azure.servicebus.connection-string=Endpoint=sb://stadio-integration-san-dev-sbus.servicebus.windows.net/;SharedAccessKeyName=sbs;SharedAccessKey=qoceGySQAo8Sida6GReBjARhAgR73SeSLqASLPHu5NY=;EntityPath=businessschool
+
+#sb://stadio-integration-san-dev-sbus.servicebus.windows.net/businessschool/$DeadLetterQueue
+#spring.cloud.azure.servicebus.connection-string=Endpoint=sb://stadio-integration-san-prod-sbus.servicebus.windows.net/;SharedAccessKeyName=sbs;SharedAccessKey=rWWtCJzdt66xGnHOpjy/AvWLgVecezWfVDIxPN5HYb8=;EntityPath=sbs
+#service-bus.connection-string=$AZURE_SERVICE_BUS_CONNECTION_STRING
+#spring.cloud.azure.servicebus.connection-string=${service-bus.connection-string}
+
+azure.servicebus.queue-name=businessschool
+#azure.servicebus.queue-name=businessschool/$DeadLetterQueue
+#azure.servicebus.queue-receive-mode=receiveanddelete
+azure.servicebus.queue-receive-mode=peeklock
+spring.cloud.stream.bindings.input.destination=businessschool
+spring.cloud.stream.bindings.output.destination=businessschool
+azure.servicebus.subscription-name=test-topic-subscription
+azure.servicebus.subscription-receive-mode=peeklock
+
+spring.datasource.url = jdbc:mysql://localhost:3306/sbs?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+hibernate.dialect=org.hibernate.dialect.HSQLDialect
+spring.datasource.username=root
+spring.datasource.password=
+
+hibernate.show_sql=true
+hibernate.hbm2ddl.auto=update
+hibernate.generate_statistics=true
+entitymanager.packagesToScan: com
